@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="snack_bar_msg">Error encounter, you may see popular news from database</string>
+    <string name="app_name">NewYorkTimesNews</string>
+    <string name="news_img">News Image</string>
+    <string name="no_data_found">No data found</string>
+</resources>
