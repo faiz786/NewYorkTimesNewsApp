@@ -19,8 +19,8 @@ class NewsVM @Inject constructor(
     val observeNews: MutableLiveData<List<NewsModel>> = MutableLiveData()
 
     init {
-//        getPopularNews()
-        getPopularNewsRxJava()
+//        getPopularNews()  // Fetch News using Kotlin Flow from here
+        getPopularNewsRxJava() // fetch News using  RX Java Single from here
     }
 
     private fun getPopularNewsRxJava() {
