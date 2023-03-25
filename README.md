@@ -1,5 +1,5 @@
 # NewYorkTimesNewsApp
-A sample android app that shows how to use ViewModels and Room together with RxJava & Dagger2, in Kotlin by Clean Architecture.
+A sample android app that shows how to use ViewModels and Room together with RxJava & Dagger Hilt, in Kotlin by Clean Architecture.
 
 ### Implemented by Clean Architecture
 The following diagram shows the structure of this project with 3 layers:
