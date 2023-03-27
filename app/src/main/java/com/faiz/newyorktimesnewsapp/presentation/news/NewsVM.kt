@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.faiz.newyorktimesnewsapp.base.BaseViewModel
 import com.faiz.newyorktimesnewsapp.domain.model.Result
 import com.faiz.newyorktimesnewsapp.domain.model.NewsModel
+import com.faiz.newyorktimesnewsapp.domain.usecase.FetchNewsUseCaseRxJava
 import com.faiz.newyorktimesnewsapp.domain.usecase.GetNewsUseCase
 import com.faiz.newyorktimesnewsapp.domain.usecase.GetNewsUseCaseRxJava
 import kotlinx.coroutines.launch
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 class NewsVM @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase,
-    private val getNewsUseCaseRxJava: GetNewsUseCaseRxJava
+    private val getNewsUseCaseRxJava: GetNewsUseCaseRxJava,
+    private val fetchNewsUseCaseRxJava: FetchNewsUseCaseRxJava
 ) : BaseViewModel() {
 
 
@@ -26,15 +28,15 @@ class NewsVM @Inject constructor(
     private fun getPopularNewsRxJava() {
         startLoading()
         setNoData(false)
-        getNewsUseCaseRxJava.execute(
+
+        fetchNewsUseCaseRxJava.execute(
             onSuccess = {
-                val list = it.results
                 endLoading()
-                setNoData(list.isEmpty())
+                setNoData(it.isEmpty())
                 viewModelScope.launch {
-                    getNewsUseCaseRxJava.savePopularNews(list)
+                    getNewsUseCaseRxJava.savePopularNews(it)
                 }
-                observeNews.postValue(list)
+                observeNews.postValue(it)
             },
             onError = {
                 setNoData(false)

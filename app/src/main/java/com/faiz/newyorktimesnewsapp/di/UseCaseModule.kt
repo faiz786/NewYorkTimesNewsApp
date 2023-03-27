@@ -1,9 +1,8 @@
 package com.faiz.newyorktimesnewsapp.di
 
+import com.faiz.newyorktimesnewsapp.data.mapper.Mapper
 import com.faiz.newyorktimesnewsapp.domain.repository.NewsRepository
-import com.faiz.newyorktimesnewsapp.domain.usecase.GetNewsUseCase
-import com.faiz.newyorktimesnewsapp.domain.usecase.GetNewUseCaseImpl
-import com.faiz.newyorktimesnewsapp.domain.usecase.GetNewsUseCaseRxJava
+import com.faiz.newyorktimesnewsapp.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,4 +20,8 @@ object UseCaseModule {
     @Provides
     @Singleton
     fun provideGetNewsUseCaseRxJava(repo: NewsRepository): GetNewsUseCaseRxJava = GetNewsUseCaseRxJava(repo)
+
+    @Provides
+    @Singleton
+    fun provideFetchNewsUseCaseRxJava(repo: NewsRepository,mapper: Mapper): FetchNewsUseCaseRxJava = FetchNewsUseCaseRxJavaImpl(repo,mapper)
 }
